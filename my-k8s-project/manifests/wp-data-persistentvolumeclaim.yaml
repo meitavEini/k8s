@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: wp-data
+  name: wp-data
+  namespace: ns-meitavi
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+  storageClassName: meitavi-storage
+  volumeName: wp-pv-meitavi
+status: {}

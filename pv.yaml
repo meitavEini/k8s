@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: db-pv-meitavi
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: meitavi-storage
+  hostPath:
+    path: "/mnt/data/db"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: wp-pv-meitavi
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: meitavi-storage
+  hostPath:
+    path: "/mnt/data/wp"
+

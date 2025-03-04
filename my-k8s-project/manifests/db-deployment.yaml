@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert --namespace=ns-meitavi
+    kompose.version: 1.30.0 (9d8dcb518)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: db
+  name: db
+  namespace: ns-meitavi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      io.kompose.service: db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert --namespace=ns-meitavi
+        kompose.version: 1.30.0 (9d8dcb518)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/config-default: "true"
+        io.kompose.service: db
+    spec:
+      containers:
+        - args:
+            - --default-authentication-plugin=mysql_native_password
+          env:
+            - name: MYSQL_DATABASE
+              value: wordpress
+            - name: MYSQL_PASSWORD
+              value: wordpress
+            - name: MYSQL_ROOT_PASSWORD
+              value: somewordpress
+            - name: MYSQL_USER
+              value: wordpress
+          image: mariadb:10.6.4-focal
+          name: db
+          ports:
+            - containerPort: 3306
+              hostPort: 3306
+              protocol: TCP
+            - containerPort: 33060
+              hostPort: 33060
+              protocol: TCP
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: db-data
+      restartPolicy: Always
+      volumes:
+        - name: db-data
+          persistentVolumeClaim:
+            claimName: db-data
+status: {}

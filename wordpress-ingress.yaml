@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wordpress-ingress
+  namespace: ns-meitavi
+spec:
+  ingressClassName: meitavi-ingress-class  
+  rules:
+  - host: af59cc6079e6c4e8ca5553d218d6bb36-4e61c242a07b1c7f.elb.us-east-1.amazonaws.com
+    http:
+      paths:
+      - path: /meitav
+        pathType: Prefix
+        backend:
+          service:
+            name: wordpress-service
+            port:
+              number: 80
