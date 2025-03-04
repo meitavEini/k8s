@@ -26,8 +26,8 @@ This is primarily a **node availability issue**, which cascades into problems wi
 Cluster Issues
 Node Status Issue
 The cluster experienced issues with nodes that were unavailable:
-![Node Status](main/get_nodes.png)
+![Node Status](get_nodes.png)
 
 Pod Status Issue
 My pods failed to run due to cluster issues:
-![Pod Status](main/get_pods_meitavi.png)
+![Pod Status](get_pods_meitavi.png)
