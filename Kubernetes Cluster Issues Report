@@ -23,7 +23,11 @@ During the deployment of WordPress on the Kubernetes cluster, I encountered seve
 ## Conclusion
 This is primarily a **node availability issue**, which cascades into problems with pod scheduling. Until the nodes transition to `Ready` status, deploying any resources will continue to fail. Fixing the underlying cluster health is necessary before proceeding with the exercise.
 
-## Attached Evidence
-- Screenshot of `kubectl get nodes` showing all nodes as `NotReady`.
-- Screenshot of `kubectl get pods -n ns-meitavi` showing pods stuck in `Pending` and `Terminating` states.
+Cluster Issues
+Node Status Issue
+The cluster experienced issues with nodes that were unavailable:
+![Node Status](main/get_nodes.png)
 
+Pod Status Issue
+My pods failed to run due to cluster issues:
+![Pod Status](main/get_pods_meitavi.png)
