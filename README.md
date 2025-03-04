@@ -129,5 +129,13 @@ kubectl delete ValidatingWebhookConfiguration ingress-nginx-admission
 
 ---
 
-Now your WordPress deployment should be up and running on EKS!
+Cluster Issues
+Node Status Issue
+The cluster experienced issues with nodes that were unavailable:
+<img width="597" alt="get_nodes" src="https://github.com/user-attachments/assets/fb10a1b5-6847-45d7-8378-b8493051d4fe" />
+
+
+Pod Status Issue
+My pods failed to run due to cluster issues:
+<img width="984" alt="get_pods_meitavi" src="https://github.com/user-attachments/assets/a03644a8-ca22-4d77-a40d-99391cc36551" />
 
