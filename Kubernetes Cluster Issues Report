@@ -1,0 +1,29 @@
+# Kubernetes Cluster Issues Report
+
+## Summary
+During the deployment of WordPress on the Kubernetes cluster, I encountered several technical issues related to node availability and pod creation. These issues prevented me from successfully completing the exercise.
+
+## Observations
+
+### 1. Node Issues
+- **All nodes in the cluster are in a `NotReady` state.**
+- This is a critical issue because nodes in `NotReady` cannot schedule new pods.
+- The output of `kubectl get nodes` confirms that all nodes are `NotReady` (as seen in the attached screenshot).
+
+### 2. Pod Issues
+- **Pods remain stuck in `Pending` or `Terminating` states.**
+- As seen in `kubectl get pods -n ns-meitavi`, multiple pods were unable to start due to node issues.
+- Example pods affected: `wordpress-99555d88-6scmq`, `meitav-ingress-controller`, and `meitav-prometheus-kube-prometheus-admission-create`.
+
+### 3. Root Cause Analysis
+- Since the nodes are `NotReady`, Kubernetes cannot assign pods to them.
+- The cluster is unable to create new resources properly.
+- This likely stems from an infrastructure issue within the managed Kubernetes cluster.
+
+## Conclusion
+This is primarily a **node availability issue**, which cascades into problems with pod scheduling. Until the nodes transition to `Ready` status, deploying any resources will continue to fail. Fixing the underlying cluster health is necessary before proceeding with the exercise.
+
+## Attached Evidence
+- Screenshot of `kubectl get nodes` showing all nodes as `NotReady`.
+- Screenshot of `kubectl get pods -n ns-meitavi` showing pods stuck in `Pending` and `Terminating` states.
+
